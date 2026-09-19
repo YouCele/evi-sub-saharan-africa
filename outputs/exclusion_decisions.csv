@@ -1,0 +1,49 @@
+iso3,country,n_required,n_present,n_missing,missing_share,excluded,reason
+ERI,Eritrea,5,1,4,0.8,True,missing more than 40% of the required inputs (4 of 5)
+SOM,"Somalia, Fed. Rep.",5,2,3,0.6,True,missing more than 40% of the required inputs (3 of 5)
+SSD,South Sudan,5,3,2,0.4,False,retained; component scores computed on the inputs that are available
+BDI,Burundi,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+ZMB,Zambia,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+TCD,Chad,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+NGA,Nigeria,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+MWI,Malawi,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+LBR,Liberia,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+GNQ,Equatorial Guinea,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+SDN,Sudan,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+SLE,Sierra Leone,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+GNB,Guinea-Bissau,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+GIN,Guinea,5,4,1,0.19999999999999996,False,retained; component scores computed on the inputs that are available
+BEN,Benin,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+AGO,Angola,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+GHA,Ghana,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+GAB,Gabon,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+ETH,Ethiopia,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+CPV,Cabo Verde,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+COG,"Congo, Rep.",5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+COM,Comoros,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+COD,"Congo, Dem. Rep.",5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+CMR,Cameroon,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+BFA,Burkina Faso,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+CIV,Côte d'Ivoire,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+CAF,Central African Republic,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+BWA,Botswana,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+MDG,Madagascar,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+LSO,Lesotho,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+GMB,"Gambia, The",5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+KEN,Kenya,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+NER,Niger,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+NAM,Namibia,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+MRT,Mauritania,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+MUS,Mauritius,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+MOZ,Mozambique,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+MLI,Mali,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+SEN,Senegal,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+RWA,Rwanda,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+SWZ,Eswatini,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+STP,São Tomé and Principe,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+TGO,Togo,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+SYC,Seychelles,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+TZA,Tanzania,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+UGA,Uganda,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+ZAF,South Africa,5,5,0,0.0,False,retained; component scores computed on the inputs that are available
+ZWE,Zimbabwe,5,5,0,0.0,False,retained; component scores computed on the inputs that are available

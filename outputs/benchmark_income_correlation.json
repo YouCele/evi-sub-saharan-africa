@@ -1,0 +1,6 @@
+{
+  "n": 45,
+  "spearman_rho": -0.4720145015441487,
+  "p_value": 0.001062299551590884,
+  "note": "correlated against log income, since income is heavily right-skewed across this set of countries"
+}

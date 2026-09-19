@@ -1,0 +1,6 @@
+indicator,n,n_missing,missing_pct
+export_concentration,48,9,0.1875
+exports_constant_usd_instability,48,6,0.125
+agri_share_gdp,48,3,0.0625
+agri_value_constant_usd_instability,48,2,0.041666666666666664
+population,48,0,0.0
