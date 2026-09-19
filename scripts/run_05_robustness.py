@@ -25,7 +25,7 @@ def main() -> None:
     banner("STEP 5 - ROBUSTNESS CHECKS")
 
     exposure = pd.read_csv(config.OUTPUT_DIR / "exposure_components.csv")
-    shock = pd.read_csv(config.OUTPUT_DIR / "econ_instability_components.csv")
+    econ_instability = pd.read_csv(config.OUTPUT_DIR / "econ_instability_components.csv")
     evi = pd.read_csv(config.OUTPUT_DIR / "evi_scores.csv")
     pca = pd.read_csv(config.OUTPUT_DIR / "pca_scores.csv")
     missing = pd.read_csv(config.OUTPUT_DIR / "missingness_by_country.csv")
@@ -42,7 +42,7 @@ def main() -> None:
     eda.fig_weighting_comparison(evi, pca)
 
     step("2. jackknife - does the ranking depend heavily on any one component")
-    jack = rb.jackknife_components(exposure, shock)
+    jack = rb.jackknife_components(exposure, econ_instability)
     save_table(jack, "robustness_jackknife.csv")
     print(jack.round(3).to_string(index=False))
     eda.fig_jackknife(jack)

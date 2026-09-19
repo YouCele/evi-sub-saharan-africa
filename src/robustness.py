@@ -34,7 +34,7 @@ def weighting_scheme_comparison(evi_df: pd.DataFrame, pca_df: pd.DataFrame) -> d
                                               "pca_rank", "rank_change"]])
 
 
-def jackknife_components(exposure: pd.DataFrame, shock: pd.DataFrame) -> pd.DataFrame:
+def jackknife_components(exposure: pd.DataFrame, econ_instability: pd.DataFrame) -> pd.DataFrame:
     """
     Recompute the composite index with each component removed in turn, and
     correlate the resulting ranking against the full index. A component
@@ -42,16 +42,16 @@ def jackknife_components(exposure: pd.DataFrame, shock: pd.DataFrame) -> pd.Data
     work; a component whose removal changes the ranking a lot is carrying
     real weight, for better or worse.
     """
-    full = composite_index(exposure, shock)
+    full = composite_index(exposure, econ_instability)
     exp_cols = [c for c in exposure.columns if c != "iso3"]
-    shk_cols = [c for c in shock.columns if c != "iso3"]
-    all_cols = [("exposure", c) for c in exp_cols] + [("economic_instability", c) for c in shk_cols]
+    econ_instability_cols = [c for c in econ_instability.columns if c != "iso3"]
+    all_cols = [("exposure", c) for c in exp_cols] + [("economic_instability", c) for c in econ_instability_cols]
 
     rows = []
     for sub_index, col in all_cols:
         exp_drop = exposure.drop(columns=[col]) if sub_index == "exposure" else exposure
-        shk_drop = shock.drop(columns=[col]) if sub_index == "economic_instability" else shock
-        reduced = composite_index(exp_drop, shk_drop)
+        econ_instability_drop = econ_instability.drop(columns=[col]) if sub_index == "economic_instability" else econ_instability
+        reduced = composite_index(exp_drop, econ_instability_drop)
         merged = full[["iso3", "evi_rank"]].merge(
             reduced[["iso3", "evi_rank"]], on="iso3", suffixes=("_full", "_reduced"))
         rho, _ = stats.spearmanr(merged["evi_rank_full"], merged["evi_rank_reduced"])

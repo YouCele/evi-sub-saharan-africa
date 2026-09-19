@@ -58,22 +58,22 @@ def build_econ_instability_components(wide: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def composite_index(exposure: pd.DataFrame, shock: pd.DataFrame) -> pd.DataFrame:
+def composite_index(exposure: pd.DataFrame, econ_instability: pd.DataFrame) -> pd.DataFrame:
     """
     Average within each sub-index (ignoring a country's missing components,
     so one gap does not zero out the whole sub-index), then average the two
     sub-indices into the composite EVI.
     """
     exp_cols = [c for c in exposure.columns if c != "iso3"]
-    shk_cols = [c for c in shock.columns if c != "iso3"]
+    econ_instability_cols = [c for c in econ_instability.columns if c != "iso3"]
 
-    out = exposure[["iso3"]].merge(shock[["iso3"]], on="iso3", how="outer")
-    out = out.merge(exposure, on="iso3", how="left").merge(shock, on="iso3", how="left")
+    out = exposure[["iso3"]].merge(econ_instability[["iso3"]], on="iso3", how="outer")
+    out = out.merge(exposure, on="iso3", how="left").merge(econ_instability, on="iso3", how="left")
 
     out["exposure_index"] = out[exp_cols].mean(axis=1, skipna=True)
     out["exposure_n_components"] = out[exp_cols].notna().sum(axis=1)
-    out["econ_instability_index"] = out[shk_cols].mean(axis=1, skipna=True)
-    out["econ_instability_n_components"] = out[shk_cols].notna().sum(axis=1)
+    out["econ_instability_index"] = out[econ_instability_cols].mean(axis=1, skipna=True)
+    out["econ_instability_n_components"] = out[econ_instability_cols].notna().sum(axis=1)
 
     out["evi"] = out[["exposure_index", "econ_instability_index"]].mean(axis=1, skipna=True)
     out["evi_rank"] = out["evi"].rank(ascending=False, method="min")
@@ -86,7 +86,7 @@ def composite_index(exposure: pd.DataFrame, shock: pd.DataFrame) -> pd.DataFrame
     return out.sort_values("evi", ascending=False).reset_index(drop=True)
 
 
-def pca_weighted_index(exposure: pd.DataFrame, shock: pd.DataFrame) -> pd.DataFrame:
+def pca_weighted_index(exposure: pd.DataFrame, econ_instability: pd.DataFrame) -> pd.DataFrame:
     """
     An alternative composite built from the first principal component of all
     six normalised components together, instead of the two-stage equal-
@@ -99,7 +99,7 @@ def pca_weighted_index(exposure: pd.DataFrame, shock: pd.DataFrame) -> pd.DataFr
     will not always be true, so this is reported as a comparison, not a
     replacement for the main index.
     """
-    merged = exposure.merge(shock, on="iso3", how="inner")
+    merged = exposure.merge(econ_instability, on="iso3", how="inner")
     cols = [c for c in merged.columns if c != "iso3"]
     complete = merged.dropna(subset=cols)
     if len(complete) < 10:

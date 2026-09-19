@@ -27,11 +27,11 @@ def main() -> None:
     wide = read_processed("country_wide_final.csv")
 
     exposure = build_exposure_components(wide)
-    shock = build_econ_instability_components(wide)
+    econ_instability = build_econ_instability_components(wide)
     save_table(exposure, "exposure_components.csv")
-    save_table(shock, "econ_instability_components.csv")
+    save_table(econ_instability, "econ_instability_components.csv")
 
-    evi = composite_index(exposure, shock)
+    evi = composite_index(exposure, econ_instability)
     evi = evi.merge(wide[["iso3", "country", "gni_per_capita_atlas"]], on="iso3", how="left")
     evi = bm.attach_ldc_status(evi)
     save_table(evi, "evi_scores.csv")
@@ -55,7 +55,7 @@ def main() -> None:
     eda.fig_income_scatter(evi)
 
     step("PCA-weighted alternative")
-    pca = pca_weighted_index(exposure, shock)
+    pca = pca_weighted_index(exposure, econ_instability)
     save_table(pca, "pca_scores.csv")
     explained = pca.attrs.get("explained_variance_ratio")
     if explained:
