@@ -57,7 +57,7 @@ live-API path, different data source. Both paths produce identical
   classification this project's index construction never had access to —
   with a Mann-Whitney test, not eyeballed for plausibility.
 - **Partial composites are flagged, not hidden.** A country can pass the
-  overall missingness threshold while having its entire shock sub-index
+  overall missingness threshold while having its entire economic instability sub-index
   missing, in which case its "EVI" is really just the exposure score wearing
   the composite's name. The pipeline names these countries explicitly rather
   than quietly averaging over the gap.

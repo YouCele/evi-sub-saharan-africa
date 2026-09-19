@@ -45,12 +45,12 @@ def jackknife_components(exposure: pd.DataFrame, shock: pd.DataFrame) -> pd.Data
     full = composite_index(exposure, shock)
     exp_cols = [c for c in exposure.columns if c != "iso3"]
     shk_cols = [c for c in shock.columns if c != "iso3"]
-    all_cols = [("exposure", c) for c in exp_cols] + [("shock", c) for c in shk_cols]
+    all_cols = [("exposure", c) for c in exp_cols] + [("economic_instability", c) for c in shk_cols]
 
     rows = []
     for sub_index, col in all_cols:
         exp_drop = exposure.drop(columns=[col]) if sub_index == "exposure" else exposure
-        shk_drop = shock.drop(columns=[col]) if sub_index == "shock" else shock
+        shk_drop = shock.drop(columns=[col]) if sub_index == "economic_instability" else shock
         reduced = composite_index(exp_drop, shk_drop)
         merged = full[["iso3", "evi_rank"]].merge(
             reduced[["iso3", "evi_rank"]], on="iso3", suffixes=("_full", "_reduced"))

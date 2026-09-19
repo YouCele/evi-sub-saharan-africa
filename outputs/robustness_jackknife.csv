@@ -1,7 +1,7 @@
 component_removed,sub_index,spearman_rho_vs_full
 landlocked_norm,exposure,0.8196731421523281
 export_concentration_norm,exposure,0.9031760715386986
-export_instability_norm,shock,0.9104532839962997
+export_instability_norm,economic_instability,0.9104532839962997
 agri_share_gdp_norm,exposure,0.9111933395004626
-agri_instability_norm,shock,0.9150169596053037
+agri_instability_norm,economic_instability,0.9150169596053037
 population_norm,exposure,0.942522355843355

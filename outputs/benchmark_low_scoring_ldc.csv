@@ -1,4 +1,4 @@
-iso3,population_norm,agri_share_gdp_norm,export_concentration_norm,landlocked_norm,export_instability_norm,agri_instability_norm,exposure_index,exposure_n_components,shock_index,shock_n_components,evi,evi_rank,partial_index,country,gni_per_capita_atlas,is_ldc
+iso3,population_norm,agri_share_gdp_norm,export_concentration_norm,landlocked_norm,export_instability_norm,agri_instability_norm,exposure_index,exposure_n_components,econ_instability_index,econ_instability_n_components,evi,evi_rank,partial_index,country,gni_per_capita_atlas,is_ldc
 BEN,0.9388442777049064,0.6348683322228943,0.5727998204105462,0.0,0.0789379489222493,0.0389884218691777,0.5366281075845867,4,0.0589631853957135,2,0.2977956464901501,28.0,False,Benin,1360.0,True
 COD,0.5414221263160803,0.2196036081344122,0.6445972170277326,0.0,0.0582028371928154,0.3646596805681649,0.3514057378695563,4,0.2114312588804901,2,0.2814184983750232,29.0,False,"Congo, Dem. Rep.",610.0,True
 MRT,0.9786766924051792,0.4927708152208801,0.307794830418542,0.0,0.0147005903817961,0.0665147720427898,0.4448105845111503,4,0.0406076812122929,2,0.2427091328617216,32.0,False,Mauritania,2010.0,True

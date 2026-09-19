@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import json
 
 from src import benchmark as bm, config, eda
-from src.index_construction import (build_exposure_components, build_shock_components,
+from src.index_construction import (build_exposure_components, build_econ_instability_components,
                                     composite_index, pca_weighted_index)
 from src.utils import banner, note, read_processed, save_json, save_table, step
 
@@ -27,9 +27,9 @@ def main() -> None:
     wide = read_processed("country_wide_final.csv")
 
     exposure = build_exposure_components(wide)
-    shock = build_shock_components(wide)
+    shock = build_econ_instability_components(wide)
     save_table(exposure, "exposure_components.csv")
-    save_table(shock, "shock_components.csv")
+    save_table(shock, "econ_instability_components.csv")
 
     evi = composite_index(exposure, shock)
     evi = evi.merge(wide[["iso3", "country", "gni_per_capita_atlas"]], on="iso3", how="left")
@@ -41,13 +41,13 @@ def main() -> None:
         note(f"{len(partial)} countries have a composite score built from only "
              "one sub-index (the other has zero available components): " +
              ", ".join(partial["country"]) + " - treat their EVI as an "
-             "exposure-only or shock-only score, not a true composite")
+             "exposure-only or economic-instability-only score, not a true composite")
 
     step("most vulnerable, by the reconstructed EVI")
-    print(evi.head(10)[["country", "iso3", "evi", "exposure_index", "shock_index",
+    print(evi.head(10)[["country", "iso3", "evi", "exposure_index", "econ_instability_index",
                         "is_ldc"]].round(3).to_string(index=False))
     step("least vulnerable")
-    print(evi.tail(10)[["country", "iso3", "evi", "exposure_index", "shock_index",
+    print(evi.tail(10)[["country", "iso3", "evi", "exposure_index", "econ_instability_index",
                         "is_ldc"]].round(3).to_string(index=False))
 
     eda.fig_ranking(evi)

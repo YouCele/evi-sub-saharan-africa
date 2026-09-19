@@ -34,7 +34,7 @@ re-run step 1, or call the fetch functions with `refresh=True`.
 | `data/processed/country_wide_final.csv` | the same, after excluding countries with too much missing data |
 | `outputs/missingness_by_indicator.csv`, `outputs/missingness_by_country.csv` | missingness, two ways |
 | `outputs/exclusion_decisions.csv` | which countries were dropped from the composite index, and why |
-| `outputs/exposure_components.csv`, `outputs/shock_components.csv` | the normalised inputs to each sub-index |
+| `outputs/exposure_components.csv`, `outputs/econ_instability_components.csv` | the normalised inputs to each sub-index |
 | `outputs/evi_scores.csv` | the full ranking: EVI, both sub-indices, LDC status, and the partial-index flag |
 | `outputs/pca_scores.csv` | the PCA-weighted alternative ranking |
 | `outputs/benchmark_ldc_comparison.json` | the Mann-Whitney test of LDC vs non-LDC scores |

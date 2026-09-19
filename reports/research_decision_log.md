@@ -22,11 +22,11 @@ made is listed here.
 |---|---|---|
 | population size | World Bank `SP.POP.TOTL` | direct match, no substitution needed |
 | share of agriculture, forestry, fishery in GDP | World Bank `NV.AGR.TOTL.ZS` | direct match |
-| export concentration (≈90-category UN Comtrade HHI) | 4-category HHI (food, fuel, ores and metals, manufactures) from World Bank WDI | UN Comtrade's product-level detail is not part of this project's data source; a 4-category HHI is real and calculable from WDI alone, but structurally coarser — its practical floor is 0.25, not 0, since even a maximally diversified economy across only 4 buckets can't go lower |
+| export concentration (≈90-category UN Comtrade HHI) | 4-category HHI (food, fuel, ores and metals, manufactures) from World Bank WDI | UN Comtrade's product-level detail is not part of this project's data source. A 4-category HHI has a practical floor of 0.25 rather than 0, but that floor is a constant shift and min-max normalisation removes it exactly - it does not affect the normalised values or the ranking. The real cost is resolution: two countries with genuinely different true diversification can land in the same broad category split and look identical here, where the 90-category version would distinguish them. Closing this gap needs finer trade data (UN Comtrade, free with registration), not a change to the normalisation step |
 | remoteness (continuous, trade-weighted distance) | landlocked / not landlocked (binary) | the UN's distance measure needs bilateral trade-weighted data this project does not have; landlocked status is a real, well-documented geographic fact and a defensible coarse proxy |
 | export instability | log-linear-detrended standard deviation of residuals, on `NE.EXP.GNFS.KD` | the UN CDP uses a centred-moving-average detrending method; log-linear is simpler to implement correctly and to audit, at the cost of not tracking short cyclical swings around a moving average as closely |
 | agricultural production instability | same method, on `NV.AGR.TOTL.KD` (constant prices, to avoid mixing price and quantity effects) | as above |
-| natural disaster component | **not included** | requires EM-DAT, which is a separate registration-gated data source outside this project's scope; the shock sub-index is therefore economic instability only, not a full shock measure |
+| natural disaster component | **not included** | requires EM-DAT, which is a separate registration-gated data source outside this project's scope; it is renamed "economic instability" throughout the pipeline rather than left as a general-sounding "shock" sub-index it would not fully earn |
 
 ## Missing data
 
@@ -34,7 +34,7 @@ made is listed here.
 |---|---|---|
 | exclusion rule | a country is dropped from the composite index if more than 40% of its five required inputs are missing | African country statistics genuinely have coverage gaps; the gaps are not random with respect to vulnerability (a fragile state is often also a state with weak statistical capacity), so silently dropping every country with any gap would bias the sample away from the most vulnerable cases |
 | sub-index averaging | each sub-index is the mean of whichever of its components a country has, not a strict requirement for all of them | one missing component should not zero out an entire sub-index for an otherwise well-covered country |
-| partial-index cases | a country whose entire exposure OR entire shock sub-index is missing (even if it clears the 40% overall threshold) is explicitly flagged, not silently averaged as if it were a real composite | such a country's "EVI" is actually just one sub-index under the composite's name; the report calls this out by name for every case, not as a footnote |
+| partial-index cases | a country whose entire exposure OR entire economic instability sub-index is missing (even if it clears the 40% overall threshold) is explicitly flagged, not silently averaged as if it were a real composite | such a country's "EVI" is actually just one sub-index under the composite's name; the report calls this out by name for every case, not as a footnote |
 | threshold sensitivity | checked at 20/30/40/50/60% as a robustness step | shows how much the country list depends on exactly where this line was drawn |
 
 ## Index construction
@@ -56,11 +56,13 @@ made is listed here.
 
 ## Things that stayed unresolved
 
-* No disaster-impact data (EM-DAT) means the shock sub-index only captures
+* No disaster-impact data (EM-DAT) means the economic instability sub-index only captures
   economic instability, not physical exposure to floods, drought, or storms
   — a real gap for a region where climate shocks matter a great deal.
-* Export concentration is understated relative to the official measure,
-  because of the 4-category simplification described above.
+* Export concentration has less resolution than the official measure: two
+  countries with genuinely different true diversification can land in the
+  same broad category and score identically here, because of the
+  4-category simplification described above.
 * The reference-year fallback (closest year within 2 years) means not
   every country's cross-sectional values are from exactly the same year.
 * Whether the reconstructed EVI is validated by the LDC comparison depends

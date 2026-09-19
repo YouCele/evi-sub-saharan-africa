@@ -107,9 +107,13 @@ def main() -> None:
       "concentration (a four-category Herfindahl index over food, fuel, ores "
       "and metals, and manufactured exports), and landlocked status.")
     A("")
-    A("**Shock** - export revenue instability and agricultural production "
-      "instability, both measured as the standard deviation of residuals "
-      f"from a log-linear trend over {config.START_YEAR}-{config.END_YEAR}.")
+    A("**Economic instability** - export revenue instability and "
+      "agricultural production instability, both measured as the standard "
+      "deviation of residuals from a log-linear trend over "
+      f"{config.START_YEAR}-{config.END_YEAR}. This sub-index is named for "
+      "what it actually measures: pure economic volatility, with no direct "
+      "physical shock component (drought, flood, storm) in it at all - see "
+      "the limitations below.")
     A("")
     A("The composite EVI is the average of the two sub-indices. All "
       "components are min-max normalised across the countries in this study "
@@ -138,22 +142,23 @@ def main() -> None:
         A(f"**{len(partial)} of the retained countries have every input for "
           f"one sub-index and none for the other** (" +
           ", ".join(partial["country"]) + "): their EVI is really an "
-          "exposure-only or shock-only score wearing the composite's name, "
-          "not a genuine average of both. They pass the overall missingness "
-          "threshold because their missing inputs are concentrated in a "
-          "single sub-index rather than spread across both.")
+          "exposure-only or economic-instability-only score wearing the "
+          "composite's name, not a genuine average of both. They pass the "
+          "overall missingness threshold because their missing inputs are "
+          "concentrated in a single sub-index rather than spread across "
+          "both.")
         A("")
 
     A("## 4. Results")
     A("")
     A("Most vulnerable, by the reconstructed EVI:")
     A("")
-    A(md(evi.head(10)[["country", "evi", "exposure_index", "shock_index",
+    A(md(evi.head(10)[["country", "evi", "exposure_index", "econ_instability_index",
                        "is_ldc"]].round(3)))
     A("")
     A("Least vulnerable:")
     A("")
-    A(md(evi.tail(10)[["country", "evi", "exposure_index", "shock_index",
+    A(md(evi.tail(10)[["country", "evi", "exposure_index", "econ_instability_index",
                        "is_ldc"]].round(3)))
     A("")
 
@@ -178,11 +183,11 @@ def main() -> None:
     A("Cases worth looking at individually - non-LDCs the index scores as "
       "surprisingly vulnerable:")
     A("")
-    A(md(high_non_ldc[["country", "evi", "exposure_index", "shock_index"]].round(3)))
+    A(md(high_non_ldc[["country", "evi", "exposure_index", "econ_instability_index"]].round(3)))
     A("")
     A("LDCs the index scores as surprisingly low:")
     A("")
-    A(md(low_ldc[["country", "evi", "exposure_index", "shock_index"]].round(3)))
+    A(md(low_ldc[["country", "evi", "exposure_index", "econ_instability_index"]].round(3)))
     A("")
     if "spearman_rho" in income_corr:
         rho = income_corr["spearman_rho"]
@@ -219,13 +224,25 @@ def main() -> None:
     A("")
     A("- Export concentration is approximated from four broad World Bank "
       "categories, not the roughly 90-category UN Comtrade breakdown the "
-      "official EVI uses. A country's true export concentration could be "
-      "understated by this simplification.")
+      "official EVI uses. This does not distort the normalised scores or "
+      "the ranking (a coarser measure still normalises correctly) - the "
+      "real cost is resolution: two countries with genuinely different "
+      "true diversification can land in the same broad category split and "
+      "come out looking identical here, where the finer breakdown would "
+      "tell them apart. Fixing this needs UN Comtrade data, not a change "
+      "to the normalisation step.")
     A("- Remoteness is approximated with a landlocked/not-landlocked flag, "
-      "not the UN's continuous, trade-weighted distance measure.")
-    A("- The shock sub-index has no disaster-impact component (EM-DAT data "
-      "was not part of this project), so a country's exposure to floods, "
-      "drought or storms is not directly represented anywhere in this index.")
+      "not the UN's continuous, trade-weighted distance measure. The "
+      "jackknife check in section 6 shows this is the single component the "
+      "ranking depends on most, which makes it the clearest concrete "
+      "target for improvement.")
+    A("- The economic instability sub-index has no disaster-impact "
+      "component (EM-DAT data was not part of this project), so a "
+      "country's physical exposure to floods, drought or storms is not "
+      "directly represented anywhere in this index - only economic "
+      "volatility is. The sub-index is named for what it actually "
+      "measures, rather than called a general 'shock' index it would not "
+      "fully earn.")
     A("- LDC status is not a direct label for the true EVI - it depends on "
       "income and human assets too - so agreement or disagreement with LDC "
       "status is suggestive, not a precise accuracy check.")

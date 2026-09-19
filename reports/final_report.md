@@ -14,7 +14,7 @@ Two sub-indices, each the equal-weighted average of its available components (a 
 
 **Exposure** - population size, agriculture's share of GDP, export concentration (a four-category Herfindahl index over food, fuel, ores and metals, and manufactured exports), and landlocked status.
 
-**Shock** - export revenue instability and agricultural production instability, both measured as the standard deviation of residuals from a log-linear trend over 2008-2023.
+**Economic instability** - export revenue instability and agricultural production instability, both measured as the standard deviation of residuals from a log-linear trend over 2008-2023. This sub-index is named for what it actually measures: pure economic volatility, with no direct physical shock component (drought, flood, storm) in it at all - see the limitations below.
 
 The composite EVI is the average of the two sub-indices. All components are min-max normalised across the countries in this study (not against a fixed global scale), so the index describes relative standing within this group of countries.
 
@@ -49,33 +49,33 @@ Countries with the most missing inputs:
 
 Most vulnerable, by the reconstructed EVI:
 
-| country                  |   evi |   exposure_index |   shock_index | is_ldc   |
-|:-------------------------|------:|-----------------:|--------------:|:---------|
-| Central African Republic | 0.722 |            0.837 |         0.607 | True     |
-| South Sudan              | 0.709 |            0.976 |         0.443 | True     |
-| Sudan                    | 0.503 |            0.467 |         0.538 | True     |
-| Chad                     | 0.488 |            0.921 |         0.055 | True     |
-| Burundi                  | 0.445 |            0.822 |         0.068 | True     |
-| Malawi                   | 0.429 |            0.818 |         0.04  | True     |
-| Lesotho                  | 0.416 |            0.694 |         0.138 | True     |
-| Liberia                  | 0.409 |            0.527 |         0.29  | True     |
-| Gambia, The              | 0.408 |            0.572 |         0.245 | True     |
-| Ethiopia                 | 0.407 |            0.778 |         0.035 | True     |
+| country                  |   evi |   exposure_index |   econ_instability_index | is_ldc   |
+|:-------------------------|------:|-----------------:|-------------------------:|:---------|
+| Central African Republic | 0.722 |            0.837 |                    0.607 | True     |
+| South Sudan              | 0.709 |            0.976 |                    0.443 | True     |
+| Sudan                    | 0.503 |            0.467 |                    0.538 | True     |
+| Chad                     | 0.488 |            0.921 |                    0.055 | True     |
+| Burundi                  | 0.445 |            0.822 |                    0.068 | True     |
+| Malawi                   | 0.429 |            0.818 |                    0.04  | True     |
+| Lesotho                  | 0.416 |            0.694 |                    0.138 | True     |
+| Liberia                  | 0.409 |            0.527 |                    0.29  | True     |
+| Gambia, The              | 0.408 |            0.572 |                    0.245 | True     |
+| Ethiopia                 | 0.407 |            0.778 |                    0.035 | True     |
 
 Least vulnerable:
 
-| country      |   evi |   exposure_index |   shock_index | is_ldc   |
-|:-------------|------:|-----------------:|--------------:|:---------|
-| Togo         | 0.216 |            0.38  |         0.052 | True     |
-| Madagascar   | 0.214 |            0.357 |         0.072 | True     |
-| Mozambique   | 0.213 |            0.397 |         0.029 | True     |
-| Kenya        | 0.208 |            0.367 |         0.048 | False    |
-| Senegal      | 0.2   |            0.323 |         0.077 | True     |
-| Nigeria      | 0.199 |            0.371 |         0.026 | False    |
-| Mauritius    | 0.194 |            0.33  |         0.058 | False    |
-| Namibia      | 0.194 |            0.303 |         0.085 | False    |
-| Tanzania     | 0.19  |            0.361 |         0.02  | True     |
-| South Africa | 0.124 |            0.195 |         0.053 | False    |
+| country      |   evi |   exposure_index |   econ_instability_index | is_ldc   |
+|:-------------|------:|-----------------:|-------------------------:|:---------|
+| Togo         | 0.216 |            0.38  |                    0.052 | True     |
+| Madagascar   | 0.214 |            0.357 |                    0.072 | True     |
+| Mozambique   | 0.213 |            0.397 |                    0.029 | True     |
+| Kenya        | 0.208 |            0.367 |                    0.048 | False    |
+| Senegal      | 0.2   |            0.323 |                    0.077 | True     |
+| Nigeria      | 0.199 |            0.371 |                    0.026 | False    |
+| Mauritius    | 0.194 |            0.33  |                    0.058 | False    |
+| Namibia      | 0.194 |            0.303 |                    0.085 | False    |
+| Tanzania     | 0.19  |            0.361 |                    0.02  | True     |
+| South Africa | 0.124 |            0.195 |                    0.053 | False    |
 
 ## 5. Benchmark validation against the UN LDC list
 
@@ -84,29 +84,29 @@ This difference is unlikely to be chance, which is a reasonable sanity check tha
 
 Cases worth looking at individually - non-LDCs the index scores as surprisingly vulnerable:
 
-| country               |   evi |   exposure_index |   shock_index |
-|:----------------------|------:|-----------------:|--------------:|
-| São Tomé and Principe | 0.402 |            0.577 |         0.226 |
-| Botswana              | 0.4   |            0.709 |         0.091 |
-| Zimbabwe              | 0.399 |            0.63  |         0.167 |
-| Eswatini              | 0.356 |            0.632 |         0.08  |
-| Cabo Verde            | 0.322 |            0.465 |         0.18  |
-| Seychelles            | 0.302 |            0.46  |         0.144 |
-| Congo, Rep.           | 0.267 |            0.486 |         0.049 |
-| Gabon                 | 0.248 |            0.377 |         0.119 |
+| country               |   evi |   exposure_index |   econ_instability_index |
+|:----------------------|------:|-----------------:|-------------------------:|
+| São Tomé and Principe | 0.402 |            0.577 |                    0.226 |
+| Botswana              | 0.4   |            0.709 |                    0.091 |
+| Zimbabwe              | 0.399 |            0.63  |                    0.167 |
+| Eswatini              | 0.356 |            0.632 |                    0.08  |
+| Cabo Verde            | 0.322 |            0.465 |                    0.18  |
+| Seychelles            | 0.302 |            0.46  |                    0.144 |
+| Congo, Rep.           | 0.267 |            0.486 |                    0.049 |
+| Gabon                 | 0.248 |            0.377 |                    0.119 |
 
 LDCs the index scores as surprisingly low:
 
-| country          |   evi |   exposure_index |   shock_index |
-|:-----------------|------:|-----------------:|--------------:|
-| Benin            | 0.298 |            0.537 |         0.059 |
-| Congo, Dem. Rep. | 0.281 |            0.351 |         0.211 |
-| Mauritania       | 0.243 |            0.445 |         0.041 |
-| Togo             | 0.216 |            0.38  |         0.052 |
-| Madagascar       | 0.214 |            0.357 |         0.072 |
-| Mozambique       | 0.213 |            0.397 |         0.029 |
-| Senegal          | 0.2   |            0.323 |         0.077 |
-| Tanzania         | 0.19  |            0.361 |         0.02  |
+| country          |   evi |   exposure_index |   econ_instability_index |
+|:-----------------|------:|-----------------:|-------------------------:|
+| Benin            | 0.298 |            0.537 |                    0.059 |
+| Congo, Dem. Rep. | 0.281 |            0.351 |                    0.211 |
+| Mauritania       | 0.243 |            0.445 |                    0.041 |
+| Togo             | 0.216 |            0.38  |                    0.052 |
+| Madagascar       | 0.214 |            0.357 |                    0.072 |
+| Mozambique       | 0.213 |            0.397 |                    0.029 |
+| Senegal          | 0.2   |            0.323 |                    0.077 |
+| Tanzania         | 0.19  |            0.361 |                    0.02  |
 
 Correlation with log GNI per capita: Spearman rho = -0.472 (p = 0.0011). The index tracks income to some degree, as expected, without simply reproducing it.
 
@@ -114,14 +114,14 @@ Correlation with log GNI per capita: Spearman rho = -0.472 (p = 0.0011). The ind
 
 Removing each component in turn and checking how much the ranking moves (1.0 = no change, lower = the ranking depends heavily on that component):
 
-| component_removed         | sub_index   |   spearman_rho_vs_full |
-|:--------------------------|:------------|-----------------------:|
-| landlocked_norm           | exposure    |                  0.82  |
-| export_concentration_norm | exposure    |                  0.903 |
-| export_instability_norm   | shock       |                  0.91  |
-| agri_share_gdp_norm       | exposure    |                  0.911 |
-| agri_instability_norm     | shock       |                  0.915 |
-| population_norm           | exposure    |                  0.943 |
+| component_removed         | sub_index            |   spearman_rho_vs_full |
+|:--------------------------|:---------------------|-----------------------:|
+| landlocked_norm           | exposure             |                  0.82  |
+| export_concentration_norm | exposure             |                  0.903 |
+| export_instability_norm   | economic_instability |                  0.91  |
+| agri_share_gdp_norm       | exposure             |                  0.911 |
+| agri_instability_norm     | economic_instability |                  0.915 |
+| population_norm           | exposure             |                  0.943 |
 
 Countries whose rank changes most between the equal-weight index and the PCA-weighted alternative:
 
@@ -148,9 +148,9 @@ How many countries the index would cover under different missingness thresholds:
 
 ## 7. Limitations
 
-- Export concentration is approximated from four broad World Bank categories, not the roughly 90-category UN Comtrade breakdown the official EVI uses. A country's true export concentration could be understated by this simplification.
-- Remoteness is approximated with a landlocked/not-landlocked flag, not the UN's continuous, trade-weighted distance measure.
-- The shock sub-index has no disaster-impact component (EM-DAT data was not part of this project), so a country's exposure to floods, drought or storms is not directly represented anywhere in this index.
+- Export concentration is approximated from four broad World Bank categories, not the roughly 90-category UN Comtrade breakdown the official EVI uses. This does not distort the normalised scores or the ranking (a coarser measure still normalises correctly) - the real cost is resolution: two countries with genuinely different true diversification can land in the same broad category split and come out looking identical here, where the finer breakdown would tell them apart. Fixing this needs UN Comtrade data, not a change to the normalisation step.
+- Remoteness is approximated with a landlocked/not-landlocked flag, not the UN's continuous, trade-weighted distance measure. The jackknife check in section 6 shows this is the single component the ranking depends on most, which makes it the clearest concrete target for improvement.
+- The economic instability sub-index has no disaster-impact component (EM-DAT data was not part of this project), so a country's physical exposure to floods, drought or storms is not directly represented anywhere in this index - only economic volatility is. The sub-index is named for what it actually measures, rather than called a general 'shock' index it would not fully earn.
 - LDC status is not a direct label for the true EVI - it depends on income and human assets too - so agreement or disagreement with LDC status is suggestive, not a precise accuracy check.
 - All normalisation is relative to the Sub-Saharan African countries in this study; the scores are not comparable to a global ranking.
 

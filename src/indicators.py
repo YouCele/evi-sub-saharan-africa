@@ -33,8 +33,14 @@ def export_concentration(wide: pd.DataFrame) -> pd.Series:
     categories). HHI = sum of squared shares expressed as fractions, so the
     theoretical range is 0 (perfectly diversified across many categories) to
     1 (all exports in one category). With only four categories the practical
-    floor is 0.25, not 0 - this is the cost of the simplification and is
-    noted in the report rather than hidden.
+    floor is 0.25, not 0 - but that floor is just a constant shift, and
+    min-max normalisation removes a constant shift exactly, so it has no
+    effect on the normalised values or the ranking. The real cost of the
+    simplification is resolution, not scale: two countries with genuinely
+    different true diversification can land in the same broad
+    food/fuel/ores/manufactures split and come out looking identical here,
+    where UN Comtrade's roughly 90-category version would tell them apart.
+    That is a measurement limitation a normalisation choice cannot fix.
     """
     shares = wide[config.EXPORT_SHARE_COLUMNS].copy()
     total = shares.sum(axis=1)

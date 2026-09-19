@@ -1,4 +1,4 @@
-iso3,population_norm,agri_share_gdp_norm,export_concentration_norm,landlocked_norm,export_instability_norm,agri_instability_norm,exposure_index,exposure_n_components,shock_index,shock_n_components,evi,evi_rank,partial_index,country,gni_per_capita_atlas,is_ldc
+iso3,population_norm,agri_share_gdp_norm,export_concentration_norm,landlocked_norm,export_instability_norm,agri_instability_norm,exposure_index,exposure_n_components,econ_instability_index,econ_instability_n_components,evi,evi_rank,partial_index,country,gni_per_capita_atlas,is_ldc
 CAF,0.9776795127214098,0.8685955733912694,0.5035821423558559,1.0,0.213205589291453,1.0,0.8374643071171337,4,0.6066027946457265,2,0.7220335508814302,1.0,False,Central African Republic,520.0,True
 SSD,0.951122049759016,,,1.0,0.5238243036835857,0.36250667071132997,0.975561024879508,2,0.44316548719745785,2,0.7093632560384829,2.0,False,South Sudan,,True
 SDN,0.779118310799263,0.6224131826310978,,0.0,1.0,0.07696807129450274,0.467177164476787,3,0.5384840356472513,2,0.5028306000620192,3.0,False,Sudan,720.0,True

@@ -48,7 +48,7 @@ def build_exposure_components(wide: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def build_shock_components(wide: pd.DataFrame) -> pd.DataFrame:
+def build_econ_instability_components(wide: pd.DataFrame) -> pd.DataFrame:
     out = pd.DataFrame(index=wide.index)
     out["iso3"] = wide["iso3"]
     out["export_instability_norm"] = min_max_normalise(
@@ -72,17 +72,17 @@ def composite_index(exposure: pd.DataFrame, shock: pd.DataFrame) -> pd.DataFrame
 
     out["exposure_index"] = out[exp_cols].mean(axis=1, skipna=True)
     out["exposure_n_components"] = out[exp_cols].notna().sum(axis=1)
-    out["shock_index"] = out[shk_cols].mean(axis=1, skipna=True)
-    out["shock_n_components"] = out[shk_cols].notna().sum(axis=1)
+    out["econ_instability_index"] = out[shk_cols].mean(axis=1, skipna=True)
+    out["econ_instability_n_components"] = out[shk_cols].notna().sum(axis=1)
 
-    out["evi"] = out[["exposure_index", "shock_index"]].mean(axis=1, skipna=True)
+    out["evi"] = out[["exposure_index", "econ_instability_index"]].mean(axis=1, skipna=True)
     out["evi_rank"] = out["evi"].rank(ascending=False, method="min")
 
     # a country can clear the overall missingness threshold with every
-    # exposure input present and every shock input absent (or the reverse);
+    # exposure input present and every economic instability input absent (or the reverse);
     # its "composite" score is then really just one sub-index wearing the
     # composite's name, which is worth knowing rather than discovering later
-    out["partial_index"] = (out["exposure_n_components"] == 0) | (out["shock_n_components"] == 0)
+    out["partial_index"] = (out["exposure_n_components"] == 0) | (out["econ_instability_n_components"] == 0)
     return out.sort_values("evi", ascending=False).reset_index(drop=True)
 
 

@@ -55,10 +55,10 @@ def main() -> None:
     save_table(cases["low_scoring_ldc"], "benchmark_low_scoring_ldc.csv")
     print("Non-LDCs with a surprisingly high reconstructed EVI:")
     print(cases["high_scoring_non_ldc"][["country", "evi", "exposure_index",
-                                         "shock_index"]].round(3).to_string(index=False))
+                                         "econ_instability_index"]].round(3).to_string(index=False))
     print("\nLDCs with a surprisingly low reconstructed EVI:")
     print(cases["low_scoring_ldc"][["country", "evi", "exposure_index",
-                                    "shock_index"]].round(3).to_string(index=False))
+                                    "econ_instability_index"]].round(3).to_string(index=False))
 
     step("correlation with income")
     income_corr = bm.correlation_with_income(evi)

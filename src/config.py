@@ -61,7 +61,7 @@ WB_REGION_SSF = "SSF"          # World Bank's own code for Sub-Saharan Africa
 # ----------------------------------------------------------------------
 # role:
 #   "exposure"  - structural exposure sub-index component
-#   "shock"     - instability sub-index component (needs the full time series)
+#   "economic_instability"     - instability sub-index component (needs the full time series)
 #   "context"   - not part of the index; used for validation and the write-up
 #   "derived"   - built from other indicators, not fetched directly
 
@@ -83,10 +83,10 @@ INDICATORS: list[dict] = [
          meaning="Ores and metals exports (% of merchandise exports)"),
     dict(code="TX.VAL.MANF.ZS.UN", name="export_share_manuf", role="derived_input",
          meaning="Manufactures exports (% of merchandise exports)"),
-    dict(code="NE.EXP.GNFS.KD", name="exports_constant_usd", role="shock_input",
+    dict(code="NE.EXP.GNFS.KD", name="exports_constant_usd", role="econ_instability_input",
          meaning="Exports of goods and services (constant 2015 US$)",
          note="time series used to compute export revenue instability"),
-    dict(code="NV.AGR.TOTL.KD", name="agri_value_constant_usd", role="shock_input",
+    dict(code="NV.AGR.TOTL.KD", name="agri_value_constant_usd", role="econ_instability_input",
          meaning="Agriculture, forestry, and fishing, value added (constant 2015 US$)",
          note="time series used to compute agricultural production instability"),
     dict(code="NY.GDP.PCAP.CD", name="gdp_per_capita", role="context",
@@ -160,14 +160,14 @@ LANDLOCKED_ISO3: set[str] = {
 
 EXPOSURE_COMPONENTS = ["population_inv_norm", "agri_share_gdp_norm",
                        "export_concentration_norm", "landlocked"]
-SHOCK_COMPONENTS = ["export_instability_norm", "agri_instability_norm"]
+ECON_INSTABILITY_COMPONENTS = ["export_instability_norm", "agri_instability_norm"]
 
 # Minimum number of years of non-missing data required inside the study
 # window for a country's instability measure to be computed at all. Fewer
 # than this and the coefficient of variation is not meaningful.
 MIN_YEARS_FOR_INSTABILITY = 8
 
-# A country missing more than this share of the exposure or shock inputs is
+# A country missing more than this share of the exposure or economic instability inputs is
 # excluded from the composite index rather than imputed - see
 # reports/research_decision_log.md for the reasoning.
 MAX_MISSING_SHARE = 0.40

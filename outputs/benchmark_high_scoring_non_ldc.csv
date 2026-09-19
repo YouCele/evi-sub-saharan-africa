@@ -1,4 +1,4 @@
-iso3,population_norm,agri_share_gdp_norm,export_concentration_norm,landlocked_norm,export_instability_norm,agri_instability_norm,exposure_index,exposure_n_components,shock_index,shock_n_components,evi,evi_rank,partial_index,country,gni_per_capita_atlas,is_ldc
+iso3,population_norm,agri_share_gdp_norm,export_concentration_norm,landlocked_norm,export_instability_norm,agri_instability_norm,exposure_index,exposure_n_components,econ_instability_index,econ_instability_n_components,evi,evi_rank,partial_index,country,gni_per_capita_atlas,is_ldc
 STP,0.9995228152525404,0.3097486921732415,1.0,0.0,0.31886951761971,0.133289769610596,0.5773178768564455,4,0.226079643615153,2,0.4016987602357993,12.0,False,São Tomé and Principe,2820.0,False
 BWA,0.9895977966616284,0.0,0.8460393155573297,1.0,0.1109128134053062,0.070431448511764,0.7089092780547396,4,0.0906721309585351,2,0.3997907045066373,13.0,False,Botswana,7690.0,False
 ZWE,0.92848896918903,0.3882260842979385,0.203727745178855,1.0,0.2315635794191783,0.1023722835435185,0.6301106996664558,4,0.1669679314813484,2,0.3985393155739021,14.0,False,Zimbabwe,2580.0,False

@@ -1,7 +1,7 @@
 """
 Script 5 - robustness checks on the index construction itself.
 
-Input  : outputs/exposure_components.csv, outputs/shock_components.csv,
+Input  : outputs/exposure_components.csv, outputs/econ_instability_components.csv,
          outputs/evi_scores.csv, outputs/pca_scores.csv,
          outputs/missingness_by_country.csv
 Output : outputs/robustness_*.csv, figures/05_jackknife_sensitivity.png,
@@ -25,7 +25,7 @@ def main() -> None:
     banner("STEP 5 - ROBUSTNESS CHECKS")
 
     exposure = pd.read_csv(config.OUTPUT_DIR / "exposure_components.csv")
-    shock = pd.read_csv(config.OUTPUT_DIR / "shock_components.csv")
+    shock = pd.read_csv(config.OUTPUT_DIR / "econ_instability_components.csv")
     evi = pd.read_csv(config.OUTPUT_DIR / "evi_scores.csv")
     pca = pd.read_csv(config.OUTPUT_DIR / "pca_scores.csv")
     missing = pd.read_csv(config.OUTPUT_DIR / "missingness_by_country.csv")
