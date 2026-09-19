@@ -12,6 +12,38 @@ Comtrade, EM-DAT) are outside this project's scope. Every substitution is
 listed in `reports/research_decision_log.md`, with the reasoning, not
 discovered later by a reader comparing numbers.
 
+## Real results
+
+This repository now contains a real, executed run — 48 Sub-Saharan African
+economies pulled from actual World Bank data, 46 retained after the
+missingness rule (Eritrea and Somalia excluded for insufficient coverage).
+
+| | |
+|---|---|
+| Most vulnerable | Central African Republic (0.72), South Sudan (0.71), Sudan (0.50) |
+| Least vulnerable | South Africa (0.12), Tanzania (0.19), Namibia (0.19) |
+| UN LDC benchmark | LDCs score significantly higher than non-LDCs (Mann-Whitney p = 0.0022, rank-biserial effect size 0.51, n = 29 vs 17) |
+| Correlation with income | Spearman rho = -0.47 against log GNI per capita — related to income, not a restatement of it |
+
+Full numbers in `outputs/evi_scores.csv`, full write-up in
+`reports/final_report.md`, ranking chart in `figures/01_evi_ranking.png`.
+
+## Two ways to get the data in
+
+**`scripts/run_01_fetch_data.py`** — calls the live World Bank API directly.
+Works on any machine with a normal internet connection.
+
+**`scripts/run_01b_load_bulk_csv.py`** — used for this repository's actual
+run, because the environment it was built in could not make outbound API
+calls. Download the 10 indicator files by hand from
+`https://api.worldbank.org/v2/country/all/indicator/<CODE>?downloadformat=csv`
+(the codes are in `src/config.py`'s `INDICATORS` list), unzip them into
+`data/raw/wb_bulk/`, and run this script instead of script 1. It derives the
+Sub-Saharan Africa country list from the real `Metadata_Country` file that
+ships in every bulk download, not a hardcoded guess — same principle as the
+live-API path, different data source. Both paths produce identical
+`data/processed/` output, so scripts 2 through 6 run unmodified either way.
+
 ## What makes this more than "download some CSVs and average them"
 
 - **The country list isn't hardcoded.** A couple of countries (Djibouti,
@@ -39,13 +71,14 @@ discovered later by a reader comparing numbers.
 
 ## An honest note on how this was built
 
-The World Bank API needs a live internet connection to call. The full
-pipeline logic here was validated end-to-end against realistic synthetic
-data (mirroring real coverage gaps for countries like Somalia and South
-Sudan) to catch bugs before you run it for real — but the actual World Bank
-numbers get pulled the first time *you* run `scripts/run_01_fetch_data.py`
-on a machine with internet access. `outputs/`, `figures/`, and
-`reports/final_report.md` are empty in this repository until that happens.
+The World Bank API needs a live internet connection to call, which this
+project's own execution environment did not have. Rather than leave the
+repository with empty output folders, the 10 indicator files were
+downloaded by hand and loaded through `scripts/run_01b_load_bulk_csv.py`
+(see above) — the results in `outputs/`, `figures/`, and
+`reports/final_report.md` are real, not synthetic. `scripts/run_01_fetch_data.py`
+remains the normal path for anyone running this on a machine with internet
+access; both produce identical downstream data.
 
 ## Project structure
 
