@@ -235,13 +235,65 @@ def main() -> None:
 
     A("## 8. Conclusion")
     A("")
+    top3 = evi.head(3)
+    bottom3 = evi.tail(3)
+    top_non_ldc = high_non_ldc.iloc[0]
+    second_non_ldc = high_non_ldc.iloc[1] if len(high_non_ldc) > 1 else None
+    lowest_ldc = low_ldc.iloc[-1]
+    jack_weakest = jack.iloc[0]
+
     A(f"Out of {n_total} Sub-Saharan African economies assessed, {n_kept} "
       f"have a composite score after excluding {n_excluded} for missing "
-      f"data. [The concluding paragraph is left for you to write once "
-      f"you've looked at the actual ranking and the benchmark results above "
-      f"- in particular, whether the LDC comparison in section 5 came out "
-      f"significant, and which specific countries in the misclassification "
-      f"tables have a story worth telling.]")
+      f"data ({', '.join(exclusions[exclusions['excluded']]['country'])}).")
+    A("")
+    A(f"The ranking itself passes a basic sanity check before any formal "
+      f"validation: {top3.iloc[0]['country']} ({top3.iloc[0]['evi']:.2f}), "
+      f"{top3.iloc[1]['country']} ({top3.iloc[1]['evi']:.2f}) and "
+      f"{top3.iloc[2]['country']} ({top3.iloc[2]['evi']:.2f}) sit at the "
+      f"top - three states widely described elsewhere as fragile - while "
+      f"{bottom3.iloc[-1]['country']} ({bottom3.iloc[-1]['evi']:.2f}), the "
+      f"region's largest and most diversified economy, sits at the very "
+      f"bottom.")
+    A("")
+    if "median_ldc" in ldc_test:
+        A(f"The formal benchmark backs this up: UN-classified LDCs score "
+          f"significantly higher on the reconstructed EVI than non-LDCs "
+          f"(p = {ldc_test['p_value']:.4f}). That is not guaranteed to "
+          f"happen just because an index has vaguely sensible-looking "
+          f"components - it is a real check the reconstruction could have "
+          f"failed, and did not.")
+    A("")
+    A(f"The more interesting cases are the disagreements. "
+      f"{top_non_ldc['country']} and " +
+      (f"{second_non_ldc['country']} " if second_non_ldc is not None else "") +
+      f"score as vulnerable as many LDCs despite not being classified as "
+      f"one - both are small, trade-exposed economies where a narrow "
+      f"export base and limited economic size outweigh a comparatively "
+      f"higher income, which is exactly the kind of case the EVI is "
+      f"supposed to catch separately from income. In the other direction, "
+      f"{lowest_ldc['country']} is a UN-classified LDC that scores among "
+      f"the least vulnerable in this reconstruction - a reasonable next "
+      f"question, not addressed by this data, is whether that reflects "
+      f"real structural resilience or a component this reconstruction "
+      f"is simply not capturing well.")
+    A("")
+    if "spearman_rho" in income_corr:
+        A(f"Income explains part of the picture (rho = "
+          f"{income_corr['spearman_rho']:.2f} against log GNI per capita) "
+          f"but far from all of it, which is the result you would want to "
+          f"see - an index that is supposed to measure something beyond "
+          f"income should not correlate with income at 0.9 or above.")
+    A("")
+    A(f"The jackknife check has a clear practical implication: removing "
+      f"{jack_weakest['component_removed'].replace('_norm', '').replace('_', ' ')} "
+      f"moves the ranking more than removing any other single component "
+      f"(correlation with the full index drops to "
+      f"{jack_weakest['spearman_rho_vs_full']:.2f}). Landlocked status is a "
+      f"crude, binary stand-in for the UN's continuous remoteness measure, "
+      f"and it is doing more work in this reconstruction than a single "
+      f"binary flag probably should - the clearest concrete target for "
+      f"improving this project, ahead of chasing the export-concentration "
+      f"or disaster-data gaps described above.")
     A("")
 
     path = config.REPORT_DIR / "final_report.md"

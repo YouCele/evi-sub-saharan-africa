@@ -156,4 +156,14 @@ How many countries the index would cover under different missingness thresholds:
 
 ## 8. Conclusion
 
-Out of 48 Sub-Saharan African economies assessed, 46 have a composite score after excluding 2 for missing data. [The concluding paragraph is left for you to write once you've looked at the actual ranking and the benchmark results above - in particular, whether the LDC comparison in section 5 came out significant, and which specific countries in the misclassification tables have a story worth telling.]
+Out of 48 Sub-Saharan African economies assessed, 46 have a composite score after excluding 2 for missing data (Eritrea, Somalia, Fed. Rep.).
+
+The ranking itself passes a basic sanity check before any formal validation: Central African Republic (0.72), South Sudan (0.71) and Sudan (0.50) sit at the top - three states widely described elsewhere as fragile - while South Africa (0.12), the region's largest and most diversified economy, sits at the very bottom.
+
+The formal benchmark backs this up: UN-classified LDCs score significantly higher on the reconstructed EVI than non-LDCs (p = 0.0022). That is not guaranteed to happen just because an index has vaguely sensible-looking components - it is a real check the reconstruction could have failed, and did not.
+
+The more interesting cases are the disagreements. São Tomé and Principe and Botswana score as vulnerable as many LDCs despite not being classified as one - both are small, trade-exposed economies where a narrow export base and limited economic size outweigh a comparatively higher income, which is exactly the kind of case the EVI is supposed to catch separately from income. In the other direction, Tanzania is a UN-classified LDC that scores among the least vulnerable in this reconstruction - a reasonable next question, not addressed by this data, is whether that reflects real structural resilience or a component this reconstruction is simply not capturing well.
+
+Income explains part of the picture (rho = -0.47 against log GNI per capita) but far from all of it, which is the result you would want to see - an index that is supposed to measure something beyond income should not correlate with income at 0.9 or above.
+
+The jackknife check has a clear practical implication: removing landlocked moves the ranking more than removing any other single component (correlation with the full index drops to 0.82). Landlocked status is a crude, binary stand-in for the UN's continuous remoteness measure, and it is doing more work in this reconstruction than a single binary flag probably should - the clearest concrete target for improving this project, ahead of chasing the export-concentration or disaster-data gaps described above.
