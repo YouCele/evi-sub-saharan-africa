@@ -3,3 +3,9 @@ data/processed/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+.DS_Store
+.venv/
+venv/
+.env
+.vscode/
+.idea/

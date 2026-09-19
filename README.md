@@ -85,7 +85,9 @@ access; both produce identical downstream data.
 ```
 .
 ├── data/
-│   ├── raw/            World Bank API cache, built by script 1 (gitignored)
+│   ├── raw/            World Bank source files: the live-API cache from script 1
+│   │                   is gitignored, the wb_bulk/ files behind this repo's
+│   │                   actual run are committed (see the note above on why)
 │   └── processed/      intermediate cross-sectional tables (gitignored)
 ├── src/                the analysis code, one module per concern
 ├── scripts/            six numbered scripts plus run_all.py
