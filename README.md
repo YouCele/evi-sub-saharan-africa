@@ -44,31 +44,6 @@ ships in every bulk download, not a hardcoded guess — same principle as the
 live-API path, different data source. Both paths produce identical
 `data/processed/` output, so scripts 2 through 6 run unmodified either way.
 
-## What makes this more than "download some CSVs and average them"
-
-- **The country list isn't hardcoded.** A couple of countries (Djibouti,
-  Sudan) are classified inconsistently as "Sub-Saharan Africa" across
-  different organisations. Instead of guessing, the code asks the World
-  Bank's own country metadata endpoint at run time and uses whatever it
-  says — the ambiguity is resolved by the data source, not by an assumption
-  baked into `config.py`.
-- **A real external benchmark.** The reconstructed index is tested against
-  the current UN list of African Least Developed Countries — a
-  classification this project's index construction never had access to —
-  with a Mann-Whitney test, not eyeballed for plausibility.
-- **Partial composites are flagged, not hidden.** A country can pass the
-  overall missingness threshold while having its entire economic instability sub-index
-  missing, in which case its "EVI" is really just the exposure score wearing
-  the composite's name. The pipeline names these countries explicitly rather
-  than quietly averaging over the gap.
-- **Two weighting schemes, compared, not one weighting scheme presented as
-  the answer.** The main index uses simple averaging, matching the UN's own
-  convention; a PCA-weighted alternative is built separately and the two
-  rankings are compared for how much they actually agree.
-- **A jackknife sensitivity check** on every component, and a missingness-
-  threshold sensitivity check, so the write-up can say which components the
-  ranking actually depends on instead of asserting it's robust.
-
 ## An honest note on how this was built
 
 The World Bank API needs a live internet connection to call, which this
